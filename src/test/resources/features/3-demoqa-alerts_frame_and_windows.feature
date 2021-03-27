@@ -40,6 +40,7 @@ Feature: DemoQA - Alerts, Frame And Windows page
     And  I dismiss alert window
     Then "Confirm Result" should contain "You selected Cancel"
 
+  @run
   Scenario: Alerts - prompt
     When I click "Alerts option"
     And  I click "Prompt Alert button"
