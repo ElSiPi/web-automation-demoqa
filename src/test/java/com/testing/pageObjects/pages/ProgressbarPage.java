@@ -6,13 +6,14 @@ import org.openqa.selenium.By;
 
 import io.cucumber.datatable.DataTable;
 import net.thucydides.core.annotations.DefaultUrl;
+import org.openqa.selenium.Keys;
 
 @DefaultUrl("/progress-bar")
 public class ProgressbarPage extends WidgetsPage{
   // Locators ----------------------------------------------------------------------------------------------------------
-  public static By PROGRESS_BAR_TITLE;
-  public static By START_STOP_BUTTON;
-  public static By PROGRESS_BAR;
+  public static By PROGRESS_BAR_TITLE = text("Progress Bar");
+  public static By START_STOP_BUTTON = id("startStopButton");
+  public static By PROGRESS_BAR = css("div[role='progressbar']");
   // Public methods ----------------------------------------------------------------------------------------------------
   public void waitForPageToLoad() {
     getElement(PROGRESS_BAR_TITLE).waitUntilPresent();
@@ -29,7 +30,12 @@ public class ProgressbarPage extends WidgetsPage{
         int currentBarValue = 0;
 
         // TODO: Implement a logic that would stop the progress bar when the required value is reached
-        currentBarValue = Integer.valueOf(getElement(PROGRESS_BAR).getAttribute("aria-valuenow"));
+        //currentBarValue = Integer.valueOf(getElement(PROGRESS_BAR).getAttribute("aria-valuenow"));
+        while (currentBarValue!=expectedValue) {
+          currentBarValue = Integer.valueOf(getElement(PROGRESS_BAR).getAttribute("aria-valuenow"));
+          if(currentBarValue==expectedValue-1)
+            getElement(START_STOP_BUTTON).click();
+        }
 
         break;
       default:
