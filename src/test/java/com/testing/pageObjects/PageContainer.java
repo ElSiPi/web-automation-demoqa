@@ -40,6 +40,8 @@ public class PageContainer{
     pages.put("TOOL_TIPS_PAGE", new ToolTipsPage());
     pages.put("MENU_PAGE", new MenuPage());
     pages.put("SELECT_MENU", new SelectMenuPage());
+    //new page
+    pages.put("MODAL_DIALOGS", new ModalDialogsPage());
   }
 
   public BasePage getPage(String page){
